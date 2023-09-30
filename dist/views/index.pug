@@ -1,0 +1,108 @@
+extends layout
+
+block content
+  #carouselExampleCaptions.carousel.slide(data-bs-ride="carousel")
+    .carousel-indicators
+      button.active(type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"  aria-current="true" aria-label="Slide 1")
+      button(type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2")
+      button(type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3")
+    .carousel-inner
+      .carousel-item.active
+        .d-block.w-100.carousel-item-img(style="background-image: url('/images/offers/1.jpg')")
+        .carousel-caption.d-none.d-md-block
+          h5 Развивайся
+
+      .carousel-item
+        .d-block.w-100.carousel-item-img(style="background-image: url('./images/offers/2.jpg')")
+        .carousel-caption.d-none.d-md-block
+          h5 Веселое времяпрепровождение
+
+      .carousel-item
+        .d-block.w-100.carousel-item-img(style="background-image: url('./images/offers/3.jpg')")
+        .carousel-caption.d-none.d-md-block
+          h5 Лучший в Старом Осколе
+
+    button.carousel-control-prev(type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev")
+      span.carousel-control-prev-icon(aria-hidden="true")
+      span.visually-hidden Предыдущий
+    button.carousel-control-next(type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="next")
+      span.carousel-control-next-icon(aria-hidden="true")
+      span.visually-hidden Следующий
+  .container.mt-4.mb-4
+    .row
+      h1.text-center.mb-4 Что такое Roboland? 
+      p RoboLand – проект людей, для которых смыслом жизни стало создание и продвижение методик детского образования в сфере IT. Мы адаптируем для детей и активно развиваем методику преподавания таких направлении, как мобильная робототехника, программируемые летательные аппараты, техническое творчество с применением технологий дополненной реальности, интернета вещей и компьютерного зрения. С нами будущие технологические предприниматели осваивают структурное и объектно-ориентированное программирование на Python, знакомятся 3D моделированием, учатся работать не только головой, но и руками.
+      .col-12.text-center
+        a.btn.btn-primary(href="/contacts") Подробнее
+  .album.py-5.bg-light
+    .container
+      .row
+        h2.text-center.mb-4.col-12 Последние новости
+        if news != null
+          for item in news 
+            .col-md-4
+              .card.mb-4.shadow-sm
+                a(href="/news/"+item.link)
+                  .img-news(style='background-image: url(' + (item.picture != null ? "/uploads/images/news/" + item.picture : "/images/noimage.png") + ')' )
+                  .card-body
+                    a(href="/news/"+item.link)
+                      h5.title-news= item.title 
+                    p.card-text= item.anons 
+                    .d-flex.justify-content-between.align-items-center
+                      a.btn.btn-primary(href="/news/"+item.link) Подробнее
+        else
+          .col-12.align-center
+            p Новостей нет
+  .bg-main
+    .container
+      .row
+        h2.text-center.mb-2 Преимущества
+        p.text-center занятий на курсах робототехники <br> Roboland
+        .col-3
+          .text-center
+            i.fas.fa-user-graduate.main-icons
+          .text-center.mt-3 Станет будущей профессией ребенка при возрастающей доле сектора IT в мировой экономике!
+        .col-3
+          .text-center
+            i.fas.fa-calculator.main-icons
+          .text-center.mt-3 Робототехника - та наука, где математика находит практическое применение
+        .col-3
+          .text-center
+            i.fas.fa-robot.main-icons
+          .text-center.mt-3 Детям с малых лет знаком конструктор Lego, детали которого применяются в робототехнике.
+        .col-3
+          .text-center
+            i.fas.fa-laptop-code.main-icons
+          .text-center.mt-3 Ребенок изучает алгоритмы и создает свои программы для того, чтобы "оживить" робота.
+  
+  h2.text-center.mb-4.mt-4 Записаться на курсы
+  .container.mb-5
+    .row
+      form.col-12#form-recall
+        .form-group
+          label(for="name") ФИО 
+            span.red *
+          input.form-control#name(type="text" name='name' required)
+        .form-group
+          label(for="email") E-mail 
+            span.red *
+          input.form-control#email(type="email"  name='email' required)
+        .form-group
+          label(for="subject") Номер телефона
+          span.red *
+          input.form-control#phone(type="tel" name='phone' required)
+        .form-group
+          label(for="message") Выбрать курс
+          select.form-control#courseId(name='courseId')
+            if courses != null
+              for item in courses
+                option(value=item.id)=item.title
+            else 
+              option Курсов нет
+              
+        .form-group.form-check
+          input.form-check-input#yes(type="checkbox" required)
+          label.form-check-label(for="yes") Я даю своё согласие на обработку своих персональных данных
+        button.btn.btn-primary.mt-2(type="submit") Отправить
+
+            

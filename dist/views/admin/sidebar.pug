@@ -1,0 +1,66 @@
+ul.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordion#accordionSidebar
+
+  a.sidebar-brand.d-flex.align-items-center.justify-content-center(href="index")
+    .sidebar-brand-icon.rotate-n-15
+    .sidebar-brand-text.mx-3 admin
+
+  hr.sidebar-divider.my-0
+
+  li.nav-item.active
+    a.nav-link(href="/admin/index")
+      i.fas.fa-fw.fa-tachometer-alt
+      span Главная
+
+  hr.sidebar-divider
+
+  li.nav-item
+    a.nav-link(href="/admin/users")
+      i.fas.fa-fw.fa-users
+      span Пользователи
+
+  hr.sidebar-divider
+
+  li.nav-item
+    a.nav-link(href="/admin/news")
+      i.fas.fa-fw.fa-folder
+      span Новости
+  
+  li.nav-item
+    a.nav-link(href="/admin/courses")
+      i.fas.fa-fw.fa-folder
+      span Курсы
+      
+  li.nav-item
+    a.nav-link(href="/admin/gallery")
+      i.fas.fa-fw.fa-folder
+      span Галерея
+      
+  li.nav-item 
+    a.nav-link(href="/admin/messages")
+      i.fas.fa-fw.fa-folder
+      span Обратная связь
+        span.red.ml-3= messages.length > 0 ? '+' + messages.length : ''  
+        
+  li.nav-item 
+    a.nav-link(href="/admin/files")
+      i.fas.fa-fw.fa-folder
+      span Файловый менеджер
+
+  hr.sidebar-divider.d-none.d-md-block
+    
+  li.nav-item
+    a.nav-link(href="/admin/logout")
+      i.fas.fa-fw.fa-chart-area
+      span Выход
+
+  hr.sidebar-divider.d-none.d-md-block
+
+  li.nav-item
+    a.nav-link(href="/")
+      i.fas.fa-fw.fa-chart-area
+      span На сайт
+
+  hr.sidebar-divider.d-none.d-md-block
+
+  .text-center.d-none.d-md-inline
+    button.rounded-circle.border-0#sidebarToggle

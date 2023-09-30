@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1.col-12.text-center.mt-5.mb-5 Галерея
+  .container
+    .row
+      if gallery != null
+        for item in gallery
+          .col-12.col-sm-3.col-md-3.col-lg-2.col-xl-2.gallery-item
+            .gallery-item-bg(style="background-image: url('/uploads/images/gallery/thumbnail/" + item.thumbnail + "' )" data-img='/uploads/images/gallery/' + item.picture  )
+      else
+        .col-12
+          p Изображений пока нет
+          
+  .blackout
+  .gallery-zoom
+    img#gallery-zoom-img(src="/images/noimage.png" alt="")

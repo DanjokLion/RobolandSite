@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  .card.shadow.mb-4
+    .card-header.py-3
+      h3 Добавить изображение
+      
+    .card-body
+      form(action="/admin/gallery/add" method="POST" encType="multipart/form-data")
+        .form-group
+          label(for="thumbnail") Превью
+          input.form-control#thumbnail(type="file" name="thumbnail" required)
+            
+        .form-group
+          label(for="picture") Изображение
+          input.form-control#picture(type="file" name="picture" required)
+            
+        input(type='hidden' name='userId' value=currentUser.id )
+            
+        button.btn.btn-primary(type="submit") Сохранить

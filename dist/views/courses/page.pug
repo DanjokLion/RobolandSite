@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  .container
+   .row
+     h1.col-12.text-center.mt-5.mb-4= content.title
+     //- img.img-fluid.mt-3.mb-3(src="/uploads/images/courses/" + ( content.picture != null ? content.picture : "noimage.png" ) )
+     .col-12.text-post
+      div!= content.content
+     h2.text-center.mb-4.mt-4 Запишись на курс! 
+     .container.mb-5.minh
+       .row
+         form.col-12#form-recall
+           .form-group
+             label(for="name") ФИО 
+               span.red *
+             input.form-control#name(type="text" name='name' required)
+           .form-group
+             label(for="email") E-mail 
+               span.red *
+             input.form-control#email(type="email"  name='email' required)
+           .form-group
+             label(for="subject") Номер телефона
+             span.red *
+             input.form-control#phone(type="tel" name='phone' required)
+             input#courseId(type="hidden" name='courseId' value=content.id)
+           .form-group.form-check
+             input.form-check-input#yes(type="checkbox" required)
+             label.form-check-label(for="yes") Я даю своё согласие на обработку своих персональных данных
+             input#type(type="hidden" name="type" value="Курсы")
+           button.btn.btn-primary.mt-2(type="submit") Отправить

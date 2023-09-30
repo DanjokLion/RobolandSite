@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+  .card.shadow.mb-4
+    .card-header.py-3
+      h3 Добавить новость
+      
+    .card-body
+      form(action="/admin/news/add" method="POST" encType="multipart/form-data")
+        .form-group
+          label(for="title") Название 
+          input.form-control#title(type="text" placeholder="Название" name="title" required)
+            
+        .form-group
+          label(for="picture") Изображение
+          input.form-control#picture(type="file" name="picture")
+          
+        .form-group      
+          label(for="anons") Краткое описание
+          textarea.form-control#pass(name="anons" required)
+          
+        .form-group
+          label(for="description") Полное описание
+          textarea.form-control#editor(name="content" required)
+        
+        .form-group
+          label(for="meta_keywords") Ключевые слова
+          input.form-control#meta_keywords(type="text" placeholder="Ключевые слова" name="meta_keywords")
+            
+        .form-group
+          label(for="meta_description") Ключевое описание
+          textarea.form-control#meta_description(name="meta_description")
+            
+        input(type='hidden' name='userId' value=currentUser.id )
+          
+        button.btn.btn-primary(type="submit") Сохранить

@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+  .card.shadow.mb-4
+    .card-header.py-3
+      h3 Редактировать изображение
+      
+    .card-body
+      form(action="/admin/gallery/edit" method="POST" encType="multipart/form-data")
+        
+        if data.picture != null    
+          img(width="150px" src='/uploads/images/gallery/' + data.thumbnail)  
+        else
+          img(width="150px" src='/images/noimage.png')     
+        .form-group
+          label(for="thumbnail") Превью
+          input.form-control#thumbnail(type="file" name="thumbnail" required)
+            
+        if data.picture != null    
+          img(width="150px" src='/uploads/images/gallery/' + data.picture)    
+        else
+          img(width="150px" src='/images/noimage.png')   
+        .form-group
+          label(for="picture") Изображение
+          input.form-control#picture(type="file" name="picture" required)
+                        
+        input(type="hidden" name="id" value=data.id)
+        input(type='hidden' name='userId' value=currentUser.id )
+          
+        button.btn.btn-primary(type="submit") Сохранить

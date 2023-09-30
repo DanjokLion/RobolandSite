@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  h1.col-12.text-center.mt-5 Новости
+  .album.py-5.bg-light
+     .container
+       .row
+         if news != null
+           for item in news 
+             .col-md-4
+               .card.mb-4.shadow-sm
+                 a(href="/news/"+item.link) 
+                   .img-news(style='background-image: url(' + (item.picture != null ? "/uploads/images/news/" + item.picture : "/images/noimage.png") + ')' )
+                   .card-body
+                     a(href="/news/"+item.link)
+                       h5.title-news= item.title 
+                     p.card-text= item.anons 
+                     .d-flex.justify-content-between.align-items-center
+                       a.btn.btn-primary(href="/news/"+item.link) Подробнее
+         else
+           .col-12.align-center
+             p Новостей нет

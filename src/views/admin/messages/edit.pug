@@ -1,0 +1,47 @@
+extends ../layout
+
+block content
+  .card.shadow.mb-4
+    .card-header.py-3
+      h3 Изменить страницу
+      
+    .card-body
+      form(action="/admin/messages/edit" method="POST" encType="multipart/form-data")
+    
+        .form-group 
+          input.mr-3#read(type="checkbox" name="read" checked=data.read == 1 ? true : false)
+          label(for= "read") Прочитано
+            
+          input.ml-3.mr-3#important(type="checkbox" name="important" checked=data.important == 1 ? true : false)  
+          label(for= "important") Важное
+          
+        .form-group
+          label.mr-3
+            b ФИО: &nbsp;
+            span= data.name  
+    
+        .form-group
+          label.mr-3
+            b E-mail: &nbsp;
+            span= data.email  
+    
+        .form-group
+          label.mr-3
+            b Телефон: &nbsp;
+            span= data.phone  
+      
+        .form-group
+          label.mr-3
+            b Сообщения: &nbsp;
+            span= data.message
+        
+        .form-group
+          label.mr-3
+            b Выбранный курс: &nbsp;
+            span= data['course.title']
+            
+        input(type="hidden" name="id" value=data.id)
+        input(type='hidden' name='userId' value=currentUser.id )
+        
+        button.btn.btn-primary(type="submit") Сохранить
+        

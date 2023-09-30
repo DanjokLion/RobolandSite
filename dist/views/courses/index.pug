@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  h1.col-12.text-center.mt-5 Курсы
+  .album.py-5.bg-light
+     .container
+       .row
+         if courses != null
+           for item in courses 
+             .col-md-4
+               .card.mb-4.shadow-sm
+                 a(href="/courses/"+item.link)
+                   .img-news(style='background-image: url(' + (item.picture != null ? "/uploads/images/courses/" + item.picture : "/images/noimage.png") + ')' )
+                   .card-body
+                     a(href="/courses/"+item.link)
+                       h5.title-news= item.title
+                     p.card-text= item.anons 
+                     .d-flex.justify-content-between.align-items-center
+                       a.btn.btn-primary(href="/courses/"+item.link) Подробнее
+         else
+           .col-12
+             p Доступных курсов нет

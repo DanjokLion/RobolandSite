@@ -1,0 +1,41 @@
+extends ../layout
+
+block content
+  h1.h3.mb-2.text-gray-800 Галерея
+
+  .card.shadow.mb-4
+    .card-header.py-3
+      a.btn.btn-primary.submit(href="/admin/gallery/add") Добавить
+
+    .card-body
+      .table-responsive
+        table.table.table-bordered#dataTable(width="100%" cellspacing="0")
+          thead
+            tr
+              th Изображение
+              th Автор
+              th Управление
+          tfoot
+            tr
+              th Изображение
+              th Автор
+              th Управление
+          tbody
+            if data != null
+              for item in data
+                tr
+                  td(width='100px') 
+                    a(href="/admin/gallery/edit/"+ item.id)
+                      if item.thumbnail != null
+                        img(width="100%" src='/uploads/images/gallery/thumbnail/' + item.thumbnail)  
+                      else 
+                        img(width="100%" src='/images/noimage.png')    
+                  td= item['user.name']
+                  td 
+                    a(href="/admin/gallery/edit/"+ item.id)
+                      i.fas.fa-pencil-alt &nbsp;
+                    i.fas.fa-trash-alt.delete(data-id=item.id data-action="/admin/gallery/delete")
+              else
+                tr
+                  td 
+                    p Данные отсутствуют

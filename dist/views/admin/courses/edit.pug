@@ -1,0 +1,44 @@
+extends ../layout
+
+block content
+  .card.shadow.mb-4
+    .card-header.py-3
+      h3 Редактировать Курс
+      
+    .card-body
+      form(action="/admin/courses/edit" method="POST" encType="multipart/form-data")
+        .form-group
+          label(for="title") Название 
+          input.form-control#title(type="text" placeholder="Название" name="title" value=data.title required)
+    
+        .form-group
+          label(for="link") Ссылка
+          input.form-control#link(type="text" placeholder="Ссылка" name="link" value=data.link)
+        if data.picture != null  
+          img(width="150px" src='/uploads/images/courses/' + data.picture)    
+        else
+          img(width="150px" src='/images/noimage.png') 
+        .form-group
+          label(for="picture") Изображение
+          input.form-control#picture(type="file" name="picture")
+          
+        .form-group      
+          label(for="anons") Краткое описание
+          textarea.form-control#pass(name="anons" required)=data.anons
+          
+        .form-group
+          label(for="description") Полное описание
+          textarea.form-control#editor(name="content" required)=data.content
+        
+        .form-group
+          label(for="meta_keywords") Ключевые слова
+          input.form-control#meta_keywords(type="text" placeholder="Ключевые слова" name="meta_keywords" value=data.meta_keywords)
+            
+        .form-group
+          label(for="meta_description") Ключевое описание
+          textarea.form-control#meta_description(name="meta_description")=data.meta_description
+        
+        input(type="hidden" name="id" value=data.id)
+        input(type='hidden' name='userId' value=currentUser.id )
+            
+        button.btn.btn-primary(type="submit") Сохранить

@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+  h1.h3.mb-2.text-gray-800 Обратная связь
+  
+  .card-body
+    .table-responsive
+      table.table.table-bordered#dataTable(width="100%" cellspacing="0")
+        thead
+          tr
+            th Имя
+            th E-mail
+            th Телефон
+            th Дата
+            th Управление
+        tfoot
+          tr
+            th Имя
+            th E-mail
+            th Телефон
+            th Дата 
+            th Управление
+        tbody
+          if data != null
+            for item in data
+              tr
+                td 
+                  span.red.mr-1!= item.important == true ? '⚐' : '&nbsp;'
+                  a(href="/admin/messages/edit/"+ item.id class= item.read == 1? '' : 'red')= item.name
+                td= item.email
+                td= item.phone
+                td= item.createdAt != null ? item.createdAt : "O_o"
+                td
+                  a(href="/admin/messages/edit/"+ item.id)
+                    i.fas.fa-pencil-alt &nbsp;
+                  i.fas.fa-trash-alt.delete(data-id=item.id data-action="/admin/messages/delete")
+            else
+              tr
+                td 
+                  p Данные отсутствуют
